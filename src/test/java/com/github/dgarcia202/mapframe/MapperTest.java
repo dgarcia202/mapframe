@@ -12,7 +12,6 @@ import java.util.List;
 public class MapperTest
 {
     @Test
-    @Ignore
     public void MapsDtos() {
 
         // arrange
@@ -20,14 +19,13 @@ public class MapperTest
         Mapper<PersonOneDto, PersonTwoDto> mapper = new PersonOneToPersonTwoMapperDto();
 
         // act
-        PersonTwoDto mapped = mapper.Map(person);
+        PersonTwoDto mapped = mapper.map(person);
 
         // assert
         Assert.assertNotNull("test mapper should not return null value.", mapped);
     }
 
     @Test
-    @Ignore
     public void MapsDtoCollections() {
         // arrange
         List<PersonOneDto> persons =  new ArrayList<>();
@@ -38,10 +36,31 @@ public class MapperTest
         Mapper<PersonOneDto, PersonTwoDto> mapper = new PersonOneToPersonTwoMapperDto();
 
         // act
-        List<PersonTwoDto> results = mapper.Map(persons);
+        List<PersonTwoDto> results = mapper.map(persons);
 
         // assert
         Assert.assertNotNull("test mapper should not return null when mapping collections.", results);
         Assert.assertEquals("mapper should return collection with same number of elements.", persons.size(), results.size());
+    }
+
+    public class PersonOneToPersonTwoMapperDto extends MapperBase<PersonOneDto, PersonTwoDto>
+    {
+
+        @Override
+        public PersonTwoDto map(PersonOneDto input)
+        {
+            if (input == null)
+            {
+                return null;
+            }
+
+            PersonTwoDto out = new PersonTwoDto();
+            out.setName(input.getName());
+            out.setAge(input.getAge());
+            out.setBirthDate(input.getBirthDate());
+            out.setActive(input.isActive());
+
+            return out;
+        }
     }
 }
