@@ -7,7 +7,52 @@ You only need to inject your mapper container and resolve the mapper for the typ
 The `Mapper<TInput, TOutput>` interface and the `MapperBase<TInput, TOutput>` abstract class provide the common contract and basic behaviour for the mappers.
 The recommendation is to inherit your mappers from `MapperBase`.
 
-The Mapper interface only exposes two methods one for mapping individual objects and another for collections.
+```java
+    public class PersonEntityToPersonDtoMapper extends MapperBase<PersonEntity, PersonDto>
+    {
+
+        @Override
+        public PersonDto map(PersonEntity input)
+        {
+            if (input == null)
+            {
+                return null;
+            }
+
+            PersonDto out = new PersonTwoDto();
+            out.setName(input.getName());
+            out.setAge(input.getAge());
+            out.setBirthDate(input.getBirthDate());
+            out.setActive(input.isActive());
+
+            return out;
+        }
+    }
+```
+    
+The Mapper interface only exposes two methods one for mapping individual objects... 
+
+```java
+        PersonEntity person =  new PersonEntity();
+
+        Mapper<PersonEntity, PersonDto> mapper = new PersonEntityToPersonDtoMapper();
+
+        PersonDto dto = mapper.map(person);
+```
+
+and another for collections.
+
+```java
+        List<PersonEntity> persons =  new ArrayList<>();
+        persons.add(new PersonEntity());
+        persons.add(new PersonEntity());
+        persons.add(new PersonEntity());
+
+        Mapper<PersonEntity, PersonDto> mapper = new PersonEntityToPersonDtoMapper();
+
+        List<PersonDto> results = mapper.map(persons);
+```
 
 ## Mapper factory
 The mapper factory's duty is to store and serve your mappers. The factory provides a method for register mappers indexed by its input and output types.
+
