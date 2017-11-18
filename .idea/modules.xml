@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/mapframe.iml" filepath="$PROJECT_DIR$/.idea/modules/mapframe.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/mapframe_main.iml" filepath="$PROJECT_DIR$/.idea/modules/mapframe_main.iml" group="mapframe" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/mapframe_test.iml" filepath="$PROJECT_DIR$/.idea/modules/mapframe_test.iml" group="mapframe" />
+    </modules>
+  </component>
+</project>
