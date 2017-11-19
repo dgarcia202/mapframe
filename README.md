@@ -52,6 +52,7 @@ Mapper<PersonEntity, PersonDto> mapper = new PersonEntityToPersonDtoMapper();
 
 List<PersonDto> results = mapper.map(persons);
 ```
+The collection map method is implemented by the base class. No need to implement it yourself.
 
 ## Mapper factory
 The mapper factory's duty is to store and serve your mappers. The factory provides a method for register mappers indexed by its input and output types.
